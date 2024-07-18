@@ -1,4 +1,4 @@
-# LoRa Basics Modem running in sdk-sidewalk v2.6.1 
+# LR11xx support and LoRa Basics Modem for sdk-sidewalk v2.6.1
 
 ## Getting started
 
@@ -64,10 +64,3 @@ kits are designed & configured by the included source code in a default capacity
 GNSS scan capability only. Care must be taken if/when attempting to assess performance characterstics of GNSS scan functionality 
 and we strongly encourage those conducting such analysis to contact Semtech via the provided support channels so that we can 
 ensure appropriate configuration settings are employed for a given performance evaluation use-case.
-
-### Testing TODO
-
-TODO -- To execute Twister integration tests, run the following command:
-
-```shell
-west twister -T tests --integration
