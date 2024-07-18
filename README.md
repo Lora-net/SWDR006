@@ -14,7 +14,7 @@ command:
 
 ```shell
 # initialize my-workspace for the ncs-example-application (main branch)
-west init -m https://github.com/Lora-net/SWDR006 -mr main my-workspace
+west init -m https://github.com/Lora-net/SWDR006 --mr main my-workspace
 
 # update nRF Connect SDK modules
 cd my-workspace
