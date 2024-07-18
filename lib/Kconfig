@@ -1,0 +1,13 @@
+# Copyright (c) 2021 Legrand North America, LLC.
+# SPDX-License-Identifier: Apache-2.0
+
+config RADIO_TIMING_TEST
+	bool "enable radio timing test"
+    select UART_ASYNC_API
+	default n
+	help
+		puts onto arduino uart some characters to identify execution points in the src
+
+menu "Libraries"
+
+endmenu

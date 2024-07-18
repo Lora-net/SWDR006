@@ -1,0 +1,150 @@
+# Copyright (c) 2021 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+#
+# This Kconfig file is picked by the Zephyr build system because it is defined
+# as the module Kconfig entry point (see zephyr/module.yml). You can browse
+# module options by going to Zephyr -> Modules in Kconfig.
+
+config SMTC_MODEM_HAL_IRQ_FROM_SID_PAL
+	bool "remove radio interrupt handling from smtc_modem_hal. Instead route from sid_pal"
+	default n
+	help
+		"cannot have two entities servicing radio interrupt pin simultaneously"
+
+config LR1110_CLI
+    bool "Enable LR11xx CLI"
+    imply SHELL
+    help
+      Enables LR11xx command line interface.
+
+choice LORA_BASICS_MODEM
+	prompt "choose LBM version to use, if any"
+	optional
+	help
+		"enable inclusion of lora basics modem library"
+
+config LORABASICSMODEM_V431
+	bool "enable v431 of LBM"
+	help
+		"enable inclusion of lora basics modem v431 library"
+
+config LORABASICSMODEM_V450
+	bool "enable v431 of LBM"
+	help
+		"enable inclusion of lora basics modem v450 library"
+
+endchoice # LORA_BASICS_MODEM
+
+choice RADIO
+	prompt "radio driver built from source"
+	default RADIO_LR11XX
+	help
+		select the radio driver built from source
+
+config RADIO_SX126X
+    bool "Enable sx126xradio & remove prebuilt sx126x"
+	imply SIDEWALK_PAL_RADIO_SOURCE
+	help
+		Use sx126x from source
+
+config RADIO_LR11XX
+    bool "Enable LR11xx radio & remove sx126x"
+	imply SIDEWALK_PAL_RADIO_SOURCE
+	help
+		Use LR11xx radio device instead of sx126x
+
+endchoice # RADIO
+
+config LINK_MASK_LBM
+    bool "use lora basics modem instead of sidewalk"
+    default n
+    help
+        use LoRaWAN transport instead of sidewalk
+
+config RADIO_TCXO
+	bool "select radio reference oscillator type"
+	default n
+	help
+		"disabled means crystal reference oscillator, enabled means TCXO driven by DIO3"
+
+if LORABASICSMODEM_V431 || LORABASICSMODEM_V450
+
+choice LBM_REGION
+   prompt "LoRa Basics Modem Region Selection"
+   default REGION_US_915
+   help
+     Select the LoRaWAN region.
+
+config REGION_UNKNOWN
+   bool "Unknown region"
+
+config REGION_AS923
+   bool "Asia 923MHz Frequency band"
+
+config REGION_AU915
+   bool "Australia 915MHz Frequency band"
+
+config REGION_CN470
+   bool "China 470MHz Frequency band"
+
+config REGION_CN779
+   bool "China 779MHz Frequency band"
+
+config REGION_EU433
+   bool "Europe 433MHz Frequency band"
+
+config REGION_EU868
+   bool "Europe 868MHz Frequency band"
+
+config REGION_KR920
+   bool "South Korea 920MHz Frequency band"
+
+config REGION_IN865
+   bool "India 865MHz Frequency band"
+
+config REGION_US_915
+   bool "North America 915MHz Frequency band"
+
+config REGION_RU864
+   bool "Russia 864MHz Frequency band"
+
+endchoice
+
+config ADD_LBM_GEOLOCATION
+    bool "enable LBM geolocation middleware"
+    default n
+
+config SMTC_MODEM_HAL_IRQ_FROM_SID_PAL
+   bool "remove radio interrupt handling from smtc_modem_hal. Instead route from sid_pal"
+   default n
+
+config LBM_HAL_DBG
+   bool "Debug logs"
+   default n
+
+config LBM_HAL_DBG_DEEP
+   bool "Deep Debug logs"
+   depends on LBM_HAL_DBG
+
+config LBM_GNSS_ALMANAC_DEEP_DBG
+	bool "Deep Debug gnss almanac logs"
+	default n
+
+config LBM_GNSS_SCAN_DEEP_DBG
+	bool "Deep Debug gnss scan logs"
+	default n
+
+config TEST_BYPASS_JOIN_DUTY_CYCLE
+    bool "faster joining"
+    default n
+
+rsource "lbm_v4_sidewalk/Kconfig"
+endif # LORABASICSMODEM_V431 || LORABASICSMODEM_V450
+
+if RADIO_LR11XX
+config SIDEWALK_GPIO_MAX
+	default 12
+endif
+
+rsource "Kconfig.dependencies"
+rsource "lib/Kconfig"

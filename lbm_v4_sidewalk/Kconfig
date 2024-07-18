@@ -1,0 +1,7 @@
+
+config LBM_REBOOT_ON_PANIC
+    bool "reset MCU on LBM panic"
+	default n
+	help
+		reset upon panic, or no for halt
+		
