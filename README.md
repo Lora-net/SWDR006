@@ -14,7 +14,7 @@ command:
 
 ```shell
 # initialize my-workspace for the ncs-example-application (main branch)
-west init -m https://gitlab.semtech.com/Apps-customers/sidewalk/lr11xx-sidewalk-sdk-v2.5.0 --mr v2.6.1 my-workspace
+west init -m https://github.com/Lora-net/SWDR006 -mr main my-workspace
 
 # update nRF Connect SDK modules
 cd my-workspace
