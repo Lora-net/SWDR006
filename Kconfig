@@ -1,21 +1,6 @@
-# COPYRIGHT 2022 CONNECTED DEVELOPMENT, A DIVISION OF
-# EXPONENTIAL TECHNOLOGY GROUP.
-#
-# SPDX-License-Identifier: Apache-2.0
-
-# LoRaWAN configuration options
-
-menuconfig LORABASICSMODEM
-   bool "LBM support"
-   help
-     This option enables LoRa Basics Modem (LBM) support.
-
-if LORABASICSMODEM
-
-
-endif # LORABASICSMODEM
 
 module = LBM
 module-str = LoRa Basics Modem
 source "subsys/logging/Kconfig.template.log_config"
+
 

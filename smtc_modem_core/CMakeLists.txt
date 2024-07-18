@@ -20,6 +20,7 @@ else()
 		modem_utilities/modem_event_utilities.c
 		modem_utilities/fifo_ctrl.c
 		modem_supervisor/modem_supervisor_light.c
+		modem_supervisor/modem_tx_protocol_manager.c
 		lorawan_api/lorawan_api.c
 		radio_planner/src/radio_planner.c
 		smtc_modem_crypto/soft_secure_element/soft_se.c # or smtc_modem_crypto/lr11xx_crypto_engine/lr11xx_ce.c
@@ -102,7 +103,6 @@ endif()
 if(CONFIG_LBM_GNSS_SCAN_DEEP_DBG)
    target_compile_definitions(smtc_lbm INTERFACE GNSS_SCAN_DEEP_DBG_TRACE)
 endif()
-
 
 if(CONFIG_RADIO_LR11XX)
     target_compile_definitions(smtc_lbm INTERFACE LR11XX)

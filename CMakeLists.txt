@@ -1,4 +1,4 @@
-if (CONFIG_LORABASICSMODEM_V431)
+if(CONFIG_LORABASICSMODEM_V450)
 	add_subdirectory(smtc_modem_core)
 
 	# global includes
@@ -7,3 +7,4 @@ if (CONFIG_LORABASICSMODEM_V431)
     	smtc_modem_hal
 	)
 endif()
+
